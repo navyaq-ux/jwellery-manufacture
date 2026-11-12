@@ -1,0 +1,172 @@
+/* ==========================================================================
+   TESTIMONIALS
+   ========================================================================== */
+.testimonials {
+  background:
+    radial-gradient(900px 500px at 80% 0%, rgba(201, 162, 75, 0.1), transparent 60%),
+    linear-gradient(180deg, #0a0a0e, #0d0d12);
+  overflow: hidden;
+}
+
+.tst {
+  position: relative;
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+.tst__viewport {
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.tst__track {
+  display: flex;
+  transition: transform 0.65s var(--ease);
+  will-change: transform;
+}
+
+.tst__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  padding: clamp(26px, 4vw, 44px);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line-soft);
+  background: linear-gradient(160deg, rgba(27, 27, 34, 0.92), rgba(12, 12, 17, 0.92));
+  box-shadow: var(--shadow);
+}
+
+.tst__stars {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 18px;
+  color: var(--gold);
+}
+
+.tst__stars svg {
+  width: 17px;
+  height: 17px;
+}
+
+.tst__quote {
+  font-family: var(--serif);
+  font-size: clamp(1.08rem, 2.6vw, 1.42rem);
+  line-height: 1.58;
+  color: var(--ivory);
+  margin-bottom: 26px;
+}
+
+.tst__quote::before {
+  content: '\201C';
+  color: var(--gold);
+}
+
+.tst__quote::after {
+  content: '\201D';
+  color: var(--gold);
+}
+
+.tst__author {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.tst__avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: #14110a;
+  background: linear-gradient(135deg, var(--gold-soft), var(--gold-deep));
+  letter-spacing: 0.04em;
+}
+
+.tst__name {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+.tst__role {
+  font-size: 0.78rem;
+  color: var(--ivory-55);
+  letter-spacing: 0.04em;
+}
+
+.tst__loc {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-left: auto;
+}
+
+.tst__ctrl {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 26px;
+}
+
+.tst__btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  color: var(--gold-soft);
+  transition: all 0.35s var(--ease);
+}
+
+.tst__btn:hover {
+  background: rgba(201, 162, 75, 0.12);
+  border-color: var(--gold);
+  transform: scale(1.06);
+}
+
+.tst__btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.tst__dots {
+  display: flex;
+  gap: 0;
+}
+
+/* Each dot is a 26px touch target; the visible circle is drawn inside it. */
+.tst__dot {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+
+.tst__dot::before {
+  content: '';
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(245, 240, 230, 0.22);
+  transition:
+    width 0.35s var(--ease),
+    background-color 0.35s var(--ease);
+}
+
+.tst__dot:hover::before {
+  background: rgba(245, 240, 230, 0.5);
+}
+
+.tst__dot[aria-current='true']::before {
+  width: 26px;
+  background: var(--gold);
+}

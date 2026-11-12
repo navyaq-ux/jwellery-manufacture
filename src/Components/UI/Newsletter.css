@@ -1,0 +1,100 @@
+/* ==========================================================================
+   NEWSLETTER (The Aurum Letter)
+   ========================================================================== */
+.news {
+  display: grid;
+  gap: 26px;
+  grid-template-columns: 1fr;
+  align-items: center;
+  padding: clamp(24px, 3.4vw, 38px);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  margin-bottom: clamp(44px, 6vw, 70px);
+  background:
+    radial-gradient(80% 140% at 0% 0%, rgba(201, 162, 75, 0.12), transparent 60%),
+    linear-gradient(160deg, rgba(24, 24, 30, 0.9), rgba(10, 10, 14, 0.9));
+}
+
+.news__title {
+  font-size: clamp(1.25rem, 3vw, 1.6rem);
+  margin-bottom: 8px;
+}
+
+.news__text {
+  color: var(--ivory-70);
+  font-size: 0.92rem;
+  margin: 0;
+}
+
+.news__form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.news__form input {
+  flex: 1 1 230px;
+  min-width: 0;
+  padding: 14px 18px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--line-soft);
+  color: var(--ivory);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.news__form input::placeholder {
+  color: rgba(245, 240, 230, 0.38);
+}
+
+.news__form input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201, 162, 75, 0.14);
+}
+
+.news__form input[aria-invalid='true'] {
+  border-color: #e0714f;
+  box-shadow: 0 0 0 3px rgba(224, 113, 79, 0.14);
+}
+
+.news__msg {
+  flex: 1 0 100%;
+  font-size: 0.8rem;
+  margin: 6px 0 0;
+  min-height: 1.2em;
+  letter-spacing: 0.03em;
+}
+
+.news__msg.is-ok {
+  color: #8fcfa0;
+}
+
+.news__msg.is-err {
+  color: #e0714f;
+}
+
+@media (min-width: 560px) {
+  .news {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+
+  .news__form {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 900px) {
+  .news {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .news__form {
+    margin-top: 0;
+  }
+}

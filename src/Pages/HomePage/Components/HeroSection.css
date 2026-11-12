@@ -1,0 +1,359 @@
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.hero {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--nav-h) + 46px) 0 60px;
+  overflow: hidden;
+  background:
+    radial-gradient(1100px 620px at 50% -8%, rgba(201, 162, 75, 0.17), transparent 62%),
+    radial-gradient(760px 520px at 8% 108%, rgba(201, 162, 75, 0.1), transparent 60%),
+    radial-gradient(700px 480px at 96% 84%, rgba(90, 110, 160, 0.12), transparent 62%),
+    linear-gradient(180deg, #08080a 0%, #0b0b10 48%, #0e0e14 100%);
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Real photography behind the type. Kept dark and desaturated so the
+   headline remains the brightest thing on the screen. */
+.hero__photo {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.85) contrast(1.1) brightness(0.72);
+  transform: scale(1.04);
+}
+
+.hero__photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      56% 50% at 50% 46%,
+      rgba(8, 8, 10, 0.92) 0%,
+      rgba(8, 8, 10, 0.76) 44%,
+      rgba(8, 8, 10, 0.44) 72%,
+      rgba(8, 8, 10, 0.82) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(8, 8, 10, 0.94) 0%,
+      rgba(8, 8, 10, 0.34) 30%,
+      rgba(8, 8, 10, 0.44) 64%,
+      #08080a 100%
+    );
+}
+
+.hero__grain {
+  position: absolute;
+  inset: -50%;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.018) 0 1px,
+    transparent 1px 3px
+  );
+  opacity: 0.6;
+}
+
+.hero__halo {
+  position: absolute;
+  left: 50%;
+  top: 38%;
+  width: min(920px, 120vw);
+  aspect-ratio: 1;
+  transform: translate(calc(-50% + var(--px, 0px)), calc(-50% + var(--py, 0px)));
+  background: radial-gradient(
+    circle,
+    rgba(201, 162, 75, 0.16) 0%,
+    rgba(201, 162, 75, 0.05) 38%,
+    transparent 62%
+  );
+  filter: blur(6px);
+  animation: halo 12s ease-in-out infinite;
+}
+
+@keyframes halo {
+  0%,
+  100% {
+    transform: translate(calc(-50% + var(--px, 0px)), calc(-50% + var(--py, 0px))) scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate(calc(-50% + var(--px, 0px)), calc(-50% + var(--py, 0px))) scale(1.12);
+    opacity: 1;
+  }
+}
+
+/* Slowly rotating ring — a jeweller's loupe / ring silhouette */
+.hero__ring {
+  position: absolute;
+  left: 58%;
+  top: 50%;
+  width: min(680px, 90vw);
+  aspect-ratio: 1;
+  transform: translate(calc(-50% + var(--px, 0px)), calc(-50% + var(--py, 0px)));
+  border-radius: 50%;
+  border: 1px solid rgba(201, 162, 75, 0.2);
+  box-shadow: inset 0 0 90px rgba(201, 162, 75, 0.07);
+  animation: spin 68s linear infinite;
+}
+
+.hero__ring::after {
+  content: '';
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  border: 1px dashed rgba(201, 162, 75, 0.14);
+}
+
+@keyframes spin {
+  from {
+    transform: translate(calc(-50% + var(--px, 0px)), calc(-50% + var(--py, 0px))) rotate(0deg);
+  }
+  to {
+    transform: translate(calc(-50% + var(--px, 0px)), calc(-50% + var(--py, 0px))) rotate(360deg);
+  }
+}
+
+/* Sparkles */
+.sparkles {
+  position: absolute;
+  inset: 0;
+}
+
+.spark {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #fff 0%,
+    rgba(255, 243, 214, 0.9) 22%,
+    rgba(201, 162, 75, 0) 68%
+  );
+  opacity: 0;
+  animation: twinkle var(--dur, 6s) ease-in-out infinite var(--del, 0s);
+}
+
+.spark--star {
+  border-radius: 0;
+  background: linear-gradient(180deg, #fff, rgba(228, 203, 146, 0.9));
+  clip-path: polygon(50% 0%, 58% 42%, 100% 50%, 58% 58%, 50% 100%, 42% 58%, 0% 50%, 42% 42%);
+  filter: drop-shadow(0 0 5px rgba(201, 162, 75, 0.8));
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  45% {
+    opacity: 0.95;
+    transform: scale(1);
+  }
+  70% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+}
+
+/* Floating gem shapes */
+.gems {
+  position: absolute;
+  inset: 0;
+}
+
+.gem {
+  position: absolute;
+  opacity: 0.5;
+  transform: translate3d(var(--px, 0px), var(--py, 0px), 0) rotate(0deg);
+  animation: bob 14s ease-in-out infinite;
+  will-change: transform;
+}
+
+.gem svg {
+  width: 100%;
+  height: auto;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translate3d(var(--px, 0px), var(--py, 0px), 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(var(--px, 0px), calc(var(--py, 0px) - 26px), 0) rotate(9deg);
+  }
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  transform: translate3d(0, var(--sy, 0px), 0);
+}
+
+.hero__title {
+  font-size: clamp(2.1rem, 7.2vw, 4.6rem);
+  font-weight: 400;
+  line-height: 1.08;
+  max-width: 19ch;
+  margin: 0 auto 22px;
+  letter-spacing: -0.01em;
+}
+
+/* The rotator is a fixed-height box so the hero never jumps while the
+   headline types itself. The inner span carries the gold gradient. */
+.hero__rot {
+  display: grid;
+  align-items: center;
+  min-height: 3.4em;
+}
+
+.hero__rot-text {
+  display: block;
+  max-width: 19ch;
+  background: linear-gradient(100deg, #fff 6%, var(--gold-soft) 34%, var(--gold) 58%, #fff 88%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: sheen 9s linear infinite;
+}
+
+@keyframes sheen {
+  to {
+    background-position: 220% center;
+  }
+}
+
+.hero__rot-text::after {
+  content: '|';
+  color: var(--gold);
+  margin-left: 0.06em;
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-text-fill-color: var(--gold);
+  animation: blink 1.05s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.hero__sub {
+  max-width: 60ch;
+  margin: 0 auto 34px;
+  color: var(--ivory-70);
+  font-size: clamp(0.98rem, 1.9vw, 1.09rem);
+}
+
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin-bottom: clamp(46px, 7vw, 78px);
+}
+
+.hero__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  max-width: 760px;
+  margin: 0 auto;
+  padding-top: 30px;
+  border-top: 1px solid var(--line-soft);
+}
+
+.stat__num {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(1.7rem, 5.4vw, 2.9rem);
+  line-height: 1.1;
+  background: linear-gradient(180deg, #fff, var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.stat__label {
+  display: block;
+  font-size: 0.63rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ivory-55);
+  margin-top: 8px;
+}
+
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.58rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ivory-55);
+}
+
+.scroll-cue i {
+  display: block;
+  width: 1px;
+  height: 44px;
+  background: linear-gradient(180deg, var(--gold), transparent);
+  animation: cue 2.2s ease-in-out infinite;
+}
+
+@keyframes cue {
+  0% {
+    transform: scaleY(0.2);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  51% {
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0.2);
+    transform-origin: bottom;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero__stats {
+    gap: 20px;
+  }
+
+  .scroll-cue {
+    display: flex;
+  }
+}

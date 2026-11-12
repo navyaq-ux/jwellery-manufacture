@@ -1,0 +1,44 @@
+/* ==========================================================================
+   BACK TO TOP
+   ========================================================================== */
+.to-top {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 100;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: rgba(12, 12, 16, 0.85);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s var(--ease),
+    visibility 0.4s,
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.to-top.is-on {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.to-top:hover {
+  border-color: var(--gold);
+  background: rgba(201, 162, 75, 0.14);
+}
+
+.to-top svg {
+  width: 16px;
+  height: 16px;
+}

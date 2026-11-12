@@ -1,0 +1,121 @@
+/* ==========================================================================
+   TIMELINE
+   ========================================================================== */
+.timeline {
+  position: relative;
+  display: grid;
+  gap: 26px;
+}
+
+.tl {
+  position: relative;
+  padding-left: 38px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s var(--ease),
+    transform 0.7s var(--ease);
+  transition-delay: var(--delay, 0ms);
+}
+
+.tl.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.tl::before {
+  /* connector */
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: 20px;
+  bottom: -26px;
+  width: 1px;
+  background: linear-gradient(180deg, var(--line), rgba(201, 162, 75, 0.1));
+}
+
+.tl:last-child::before {
+  display: none;
+}
+
+.tl__dot {
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-deep);
+  background: var(--ink);
+  display: grid;
+  place-items: center;
+}
+
+.tl__dot::after {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.tl__year {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.tl__title {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+.tl__text {
+  font-size: 0.9rem;
+  color: var(--ivory-70);
+  margin: 0;
+}
+
+@media (min-width: 1024px) {
+  /* Horizontal timeline on desktop */
+  .timeline {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+    padding-top: 6px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    top: 11px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--line) 8%, var(--line) 92%, transparent);
+  }
+
+  .tl {
+    padding-left: 0;
+    padding-right: 18px;
+  }
+
+  .tl::before {
+    display: none;
+  }
+
+  .tl__dot {
+    left: 0;
+    top: 2px;
+  }
+
+  .tl__year {
+    font-size: 1.45rem;
+    margin: 26px 0 8px;
+  }
+
+  .tl__text {
+    font-size: 0.8rem;
+  }
+}

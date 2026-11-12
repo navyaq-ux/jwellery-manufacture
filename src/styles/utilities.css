@@ -1,0 +1,125 @@
+/* ==========================================================================
+   UTILITIES — container, section rhythm, eyebrow, scroll reveal
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+.section {
+  position: relative;
+  z-index: 2;
+  padding: clamp(64px, 9vw, 124px) 0;
+}
+
+.section__head {
+  max-width: 760px;
+  margin: 0 0 clamp(34px, 4.5vw, 54px);
+}
+
+.section__title {
+  font-size: clamp(1.95rem, 5.2vw, 3.1rem);
+  margin-bottom: 0.5em;
+}
+
+.section__title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.section__lede {
+  color: var(--ivory-70);
+  font-size: clamp(1rem, 1.6vw, 1.075rem);
+  max-width: 64ch;
+  margin-bottom: 0;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 16px;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 34px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.rule {
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: linear-gradient(90deg, transparent, var(--line), transparent);
+}
+
+/* Scroll-reveal.
+   The offset lives in a custom property so component hover transforms
+   (e.g. .svc:hover) are never fought by the reveal state. */
+[data-reveal] {
+  opacity: 0;
+  --reveal-y: 26px;
+  transform: translate3d(0, var(--reveal-y), 0);
+  transition:
+    opacity 0.85s var(--ease),
+    transform 0.85s var(--ease);
+  transition-delay: var(--delay, 0ms);
+  will-change: opacity, transform;
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  --reveal-y: 0px;
+}
+
+/* Screen-reader-only helper */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip link */
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  background: var(--gold);
+  color: #14110a;
+  padding: 12px 20px;
+  border-radius: 0 0 8px 0;
+  font-weight: 500;
+}
+
+.skip:focus {
+  left: 0;
+}
+
+@media (min-width: 560px) {
+  .container {
+    padding-inline: 28px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    padding-inline: 32px;
+  }
+}

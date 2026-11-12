@@ -1,0 +1,47 @@
+/* ==========================================================================
+   REDUCED MOTION & PRINT
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-reveal],
+  .tl {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .cursor-glow {
+    display: none !important;
+  }
+
+  .hero__rot-text::after {
+    display: none !important;
+  }
+}
+
+@media print {
+  .nav,
+  .drawer,
+  .drawer-backdrop,
+  .to-top,
+  .cursor-glow,
+  .hero__bg {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #111;
+  }
+}

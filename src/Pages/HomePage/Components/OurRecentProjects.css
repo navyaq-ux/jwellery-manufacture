@@ -1,0 +1,98 @@
+/* ==========================================================================
+   SIGNATURE WORK — GALLERY
+   ========================================================================== */
+.gallery__head {
+  display: grid;
+  gap: 8px;
+  max-width: 64ch;
+}
+
+.gallery__head .story__sub {
+  margin: 0;
+}
+
+.gallery__lede {
+  color: var(--ivory-70);
+  font-size: 0.92rem;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(10px, 1.8vw, 18px);
+  margin-top: clamp(20px, 3vw, 30px);
+}
+
+.gallery__item {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: #0f0f14;
+  transition: border-color 0.4s ease;
+}
+
+.gallery__item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  filter: saturate(0.95) contrast(1.04);
+  transition:
+    transform 0.9s var(--ease),
+    filter 0.5s ease;
+}
+
+.gallery__item::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 56%;
+  background: linear-gradient(180deg, transparent, rgba(6, 6, 9, 0.94));
+  pointer-events: none;
+}
+
+.gallery__item:hover {
+  border-color: rgba(201, 162, 75, 0.45);
+}
+
+.gallery__item:hover img {
+  transform: scale(1.05);
+  filter: saturate(1.06) contrast(1.06);
+}
+
+.gallery__cap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: grid;
+  gap: 3px;
+  padding: clamp(12px, 2vw, 18px);
+}
+
+.gallery__cap b {
+  font-family: var(--serif);
+  font-weight: 500;
+  line-height: 1.2;
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  color: var(--ivory);
+}
+
+.gallery__cap span {
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+@media (min-width: 900px) {
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
